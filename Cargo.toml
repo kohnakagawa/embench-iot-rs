@@ -1,0 +1,31 @@
+[package]
+name = "embench-iot-rs"
+version = "0.1.0"
+authors = ["Koh M. Nakagawa <tsunekou1019@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+
+[[bin]]
+name = "nbody"
+path = "src/nbody.rs"
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[[bin]]
+name = "mont64"
+path = "src/mont64.rs"
+
+[[bin]]
+name = "crc32"
+path = "src/crc32.rs"
+
+[[bin]]
+name = "cubic"
+path = "src/cubic/libcubic.rs"
+
+[[bin]]
+name = "edn"
+path = "src/edn/libedn.rs"
