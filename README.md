@@ -1,20 +1,29 @@
+# Embench-rs: Open Benchmarks for Embedded Platforms implemented in Rust
+This repository contains the Embench free and open source benchmark suite implemented in Rust. The detailed description of Embench is found at [Embench GitHub repository](https://github.com/embench/embench-iot).
 
+## Available benchmarks
+Sorry, some of the benchmarks are not available yet.
 
-## memo
-- trait を使ったうまくベンチマーク部分を抽象的に実装してみる
-- 全移植は結構時間がかかりそうなので、発表用のネタ作りは少し対象を絞る
-- 以下を移植の対象として絞ることにする
+| name           | status      |
+|----------------|-------------|
+| aha-mont64     | done        |
+| crc32          | done        |
+| cubic          | done        |
+| edn            | in progress |
+| huffbench      | not yet     |
+| mutmult-int    | done        |
+| minver         | done        |
+| nbody          | done        |
+| nettle-aes     | done        |
+| nettle-sha256  | not yet     |
+| nsichneu       | not yet     |
+| picojpeg       | not yet     |
+| qrduino        | not yet     |
+| sglib-combined | not yet     |
+| slre           | not yet     |
+| st             | done        |
+| statemate      | not yet     |
+| ud             | not yet     |
+| wikisort       | not yet     |
 
-| name        | branch | memory | compute | status |
-|-------------|--------|--------|---------|--------|
-| aha-mont64  | low    | low    | high    |        |
-| crc32       | high   | med    | low     |        |
-| st          | med    | low    | high    |        |
-| nettle-aes  | med    | high   | low     |        |
-| mutmult-int | med    | med    | med     |        |
-| cubic       | low    | med    | med     |        |
-| minver      | high   | low    | med     |        |
-
-- edn と huffbench は後ほど移植
-- 上記に絞り、ベンチマーク移植を行う
 
