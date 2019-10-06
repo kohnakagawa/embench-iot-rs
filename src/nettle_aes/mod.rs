@@ -33,17 +33,16 @@ impl Benchmark for NettleAesBenchmark {
     }
 
     fn warm_caches(&mut self, heat: i32) {
-        // self.benchmark_body(heat);
+        self.benchmark_body(heat);
     }
 
     fn benchmark(&mut self) {
-        // self.benchmark_body((LOCAL_SCALE_FACTOR * CPU_MHZ) as i32);
-        self.benchmark_body(1);
+        self.benchmark_body((LOCAL_SCALE_FACTOR * CPU_MHZ) as i32);
     }
 
     fn benchmark_body(&mut self, rpt: i32) {
         for i in 0..rpt {
-            aes_set_encrypt_key(&mut self.encctx, 32, &KEY); // ok
+            aes_set_encrypt_key(&mut self.encctx, 32, &KEY);
             aes_encrypt(&self.encctx, LEN, &mut self.encrypted, &PLAINTEXT);
 
             aes_set_decrypt_key(&mut self.decctx, 32, &KEY);
