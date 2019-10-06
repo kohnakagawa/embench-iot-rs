@@ -41,13 +41,13 @@ fn main() {
 
     let start = Instant::now();
     bench.benchmark();
-    let end = start.elapsed();
+    let end = Instant::now();
 
     let correct = bench.verify_benchmark();
     if !correct {
         println!("failed");
     } else {
         println!("success");
-        println!("elapsed time {} {}", end.as_secs(), end.subsec_nanos() / 1_000_000);
+        println!("{}ms", (end - start).as_secs_f64() * 1000.0);
     }
 }
