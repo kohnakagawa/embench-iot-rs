@@ -131,6 +131,7 @@ impl Benchmark for NbodyBench {
     }
 }
 
+#[inline(never)]
 fn offset_momentum(bodies: &mut [Body], nbodies: usize) {
     for i in 0..nbodies {
         for k in 0..3 {
@@ -139,6 +140,7 @@ fn offset_momentum(bodies: &mut [Body], nbodies: usize) {
     }
 }
 
+#[inline(never)]
 fn bodies_energy(bodies: &[Body], nbodies: usize) -> f64 {
     let mut e = 0.0;
     for i in 0..nbodies {
