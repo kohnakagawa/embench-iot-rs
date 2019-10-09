@@ -134,7 +134,7 @@ impl MinverBench {
 
 impl Benchmark for MinverBench {
     fn initialise_benchmark(&mut self) {
-
+        println!("Minver benchmark starts.");
     }
 
     fn warm_caches(&mut self, heat: i32) {

@@ -21,8 +21,11 @@ impl CubicBench {
 }
 
 impl Benchmark for CubicBench {
+    fn initialise_benchmark(&mut self) {
+        println!("cubic benchmark starts.");
+    }
+
     fn verify_benchmark(&mut self) -> bool {
-        println!("{:?} {} {}", self.res0, self.soln_cnt0, self.soln_cnt1);
         (3 == self.soln_cnt0) && ((2.0 - self.res0[0]).abs() < 1.0e-10) &&
          ((6.0 - self.res0[1]).abs() < 1.0e-10) && ((2.5 - self.res0[2]).abs() < 1.0e-10) &&
          (1 == self.soln_cnt1) && ((2.5 - self.res1).abs() < 1.0e-10)
