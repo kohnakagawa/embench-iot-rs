@@ -1,31 +1,9 @@
-use super::common::{Benchmark, CPU_MHZ};
+use super::common::{Benchmark, CPU_MHZ, BeebsRandomGenerator};
 
 const LOCAL_SCALE_FACTOR: usize = 145;
 
 macro_rules! updc32 {
     ($octet:expr, $crc:expr) => (CRC_32_TAB[(($crc ^ (($octet as u8) as u32)) & 0xff) as usize] ^ ($crc >> 8));
-}
-
-struct BeebsRandomGenerator {
-    seed: i64,
-}
-
-impl BeebsRandomGenerator {
-    fn new() -> BeebsRandomGenerator {
-        BeebsRandomGenerator {
-            seed: 0,
-        }
-    }
-
-    fn rand_beebs(&mut self) -> i32 {
-        self.seed = (self.seed * 1103515245 + 12345) & ((1 << 31) - 1);
-        (self.seed >> 16) as i32
-    }
-
-    fn srand_beebs(&mut self, new_seed: i64) {
-        self.seed = new_seed;
-    }
-
 }
 
 pub struct CRC32Bench {

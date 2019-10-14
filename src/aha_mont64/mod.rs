@@ -2,6 +2,9 @@ use super::common::{Benchmark, CPU_MHZ};
 use std::num::Wrapping;
 
 const LOCAL_SCALE_FACTOR: usize = 316;
+const IN_M: u64 = 0xfae849273928f89f;
+const IN_B: u64 = 0x14736defb9330573;
+const IN_A: u64 = 0x0549372187237fef;
 
 pub struct AhaMont64Bench {
     errors: usize,
@@ -27,18 +30,15 @@ impl Benchmark for AhaMont64Bench {
     fn benchmark_body(&mut self, rpt: i32) {
         self.errors = 0;
 
-        const in_m: u64 = 0xfae849273928f89f;
-        const in_b: u64 = 0x14736defb9330573;
-        const in_a: u64 = 0x0549372187237fef;
         for _ in 0..rpt {
             let (mut hr, mut p1hi, mut p1lo, mut p1, mut p, mut abar, mut bbar): (u64, u64, u64, u64, u64, u64, u64)
                 = (0, 0, 0, 0, 0, 0, 0);
             let (mut phi, mut plo): (u64, u64) = (0, 0);
             let (mut rinv, mut mprime): (u64, u64) = (0, 0);
 
-            let m = in_m;
-            let b = in_b;
-            let a = in_a;
+            let m = IN_M;
+            let b = IN_B;
+            let a = IN_A;
 
             mulul64(a, b, &mut p1hi, &mut p1lo);
             p1 = modul64(p1hi, p1lo, m);
