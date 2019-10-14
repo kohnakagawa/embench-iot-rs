@@ -5,11 +5,11 @@ const UPPERLIMIT: usize = 20;
 const MOD_SIZE: i32 = 8095;
 
 pub struct MatMultIntBench {
-    pub a: [[i64; UPPERLIMIT]; UPPERLIMIT],
-    pub a_ref: [[i64; UPPERLIMIT]; UPPERLIMIT],
-    pub b: [[i64; UPPERLIMIT]; UPPERLIMIT],
-    pub b_ref: [[i64; UPPERLIMIT]; UPPERLIMIT],
-    pub result: [[i64; UPPERLIMIT]; UPPERLIMIT]
+    pub a: [[i32; UPPERLIMIT]; UPPERLIMIT],
+    pub a_ref: [[i32; UPPERLIMIT]; UPPERLIMIT],
+    pub b: [[i32; UPPERLIMIT]; UPPERLIMIT],
+    pub b_ref: [[i32; UPPERLIMIT]; UPPERLIMIT],
+    pub result: [[i32; UPPERLIMIT]; UPPERLIMIT]
 }
 
 struct RandomGenerator {
@@ -36,13 +36,13 @@ impl Benchmark for MatMultIntBench {
 
         for outer in 0..UPPERLIMIT {
             for inner in 0..UPPERLIMIT {
-                self.a_ref[outer][inner] = rgen.integer() as i64;
+                self.a_ref[outer][inner] = rgen.integer() as i32;
             }
         }
 
         for outer in 0..UPPERLIMIT {
             for inner in 0..UPPERLIMIT {
-                self.b_ref[outer][inner] = rgen.integer() as i64;
+                self.b_ref[outer][inner] = rgen.integer() as i32;
             }
         }
     }
@@ -60,7 +60,7 @@ impl Benchmark for MatMultIntBench {
     }
 
     fn verify_benchmark(&mut self) -> bool {
-        const EXP: [[i64;UPPERLIMIT]; UPPERLIMIT] = [
+        const EXP: [[i32;UPPERLIMIT]; UPPERLIMIT] = [
             [291018000, 315000075, 279049970, 205074215, 382719905,
             302595865, 348060915, 308986330, 343160760, 307099935,
             292564810, 240954510, 232755815, 246511665, 328466830,
@@ -158,7 +158,7 @@ impl MatMultIntBench {
     }
 }
 
-fn multiply(a: &[[i64; UPPERLIMIT]; UPPERLIMIT], b: &[[i64; UPPERLIMIT]; UPPERLIMIT], res: &mut [[i64; UPPERLIMIT]; UPPERLIMIT]) {
+fn multiply(a: &[[i32; UPPERLIMIT]; UPPERLIMIT], b: &[[i32; UPPERLIMIT]; UPPERLIMIT], res: &mut [[i32; UPPERLIMIT]; UPPERLIMIT]) {
     for outer in 0..UPPERLIMIT {
         for inner in 0..UPPERLIMIT {
             res[outer][inner] = 0;
