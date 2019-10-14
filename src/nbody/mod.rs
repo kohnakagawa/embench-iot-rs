@@ -49,13 +49,15 @@ impl NbodyBench {
                     &[2.68067772490389322e-03 * DAYS_PER_YEAR, 1.62824170038242295e-03 * DAYS_PER_YEAR, -9.51592254519715870e-05 * DAYS_PER_YEAR],
                     5.15138902046611451e-05 * SOLAR_MASS,
                 ),
-            ]
+            ],
+            total_energy: 0.0,
         }
     }
 }
 
 pub struct NbodyBench {
-    solar_bodies: [Body; BODIES_SIZE]
+    solar_bodies: [Body; BODIES_SIZE],
+    total_energy: f64,
 }
 
 impl Benchmark for NbodyBench {
@@ -66,9 +68,11 @@ impl Benchmark for NbodyBench {
     fn benchmark_body(&mut self, rpt: i32) {
         for _ in 0..rpt {
             offset_momentum(&mut self.solar_bodies, BODIES_SIZE);
+            let mut e = 0.0;
             for _ in 0..100 {
-                bodies_energy(&mut self.solar_bodies, BODIES_SIZE);
+                e += bodies_energy(&mut self.solar_bodies, BODIES_SIZE);
             }
+            self.total_energy = e;
         }
     }
 
@@ -77,6 +81,11 @@ impl Benchmark for NbodyBench {
     }
 
     fn verify_benchmark(&mut self) -> bool {
+        const EXP_ENERGY: f64 = -16.907516382852478;
+        if (self.total_energy - EXP_ENERGY).abs() > 1.0e-13 {
+            return false;
+        }
+
         const EXPECTED: [Body;BODIES_SIZE] = [
             Body {
                 x: [0.0, 0.0, 0.0],
