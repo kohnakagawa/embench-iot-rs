@@ -3,3 +3,6 @@ name = "embench-iot-rs"
 version = "0.1.0"
 authors = ["Koh M. Nakagawa <tsunekou1019@gmail.com>"]
 edition = "2018"
+
+[profile.release]
+codegen-units = 1
